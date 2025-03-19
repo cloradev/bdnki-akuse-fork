@@ -3,7 +3,7 @@ import * as os from 'os';
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import './styles/Tab4.css';
-
+import { ipcRenderer } from 'electron';
 import { getViewerInfo } from '../../modules/anilist/anilistApi';
 import { getOptions, makeRequest } from '../../modules/requests';
 import { clearAllHistory } from '../../modules/history';
@@ -373,8 +373,14 @@ const Tab4: React.FC = () => {
   };
 
   const handleAutoUpdateChange = () => {
-    STORE.set('auto_update', !autoUpdate);
-    setAutoUpdate(!autoUpdate);
+    const newValue = !autoUpdate;
+    STORE.set('auto_update', newValue);
+    setAutoUpdate(newValue);
+
+    // If auto update is being enabled, check for updates immediately
+    if (newValue) {
+      ipcRenderer.send('check-for-updates');
+    }
   };
 
   const handleAutoLaunchChange = () => {
