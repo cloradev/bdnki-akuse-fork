@@ -1,0 +1,206 @@
+nav.main {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 1%;
+  bottom: 0;
+  width: 90px;
+  padding: 20px 0;
+  background-color: var(--color-0);
+  z-index: 15;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Remove default link styling */
+nav.main a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+nav.main a:focus {
+  outline: none;
+}
+
+nav.main ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+nav.main ul li {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove old tooltip styles */
+nav.main ul li::before {
+  display: none;
+}
+
+/* Main nav item container - now wider to fit typography fonts */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: auto;
+  min-height: 60px;
+  padding: 10px 5px;
+  border-radius: 4px;
+  background-color: var(--color-0);
+  border: 1px solid var(--color-0);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+/* Active and hover states for nav-item */
+nav.main ul li.active .nav-item {
+  background-color: var(--color-1);
+  border-color: var(--color-3);
+}
+
+nav.main ul li:hover .nav-item:not(.active) {
+  background-color: var(--color-2);
+  transform: translateY(-2px);
+}
+
+/* Icon styles - maintain proper spacing */
+nav.main ul .i-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 6px;
+}
+
+nav.main ul li .i-wrapper .i {
+  color: var(--font-2);
+  transition: color 0.2s ease;
+  font-size: 1rem;
+}
+
+nav.main ul li.active .i-wrapper .i {
+  color: var(--primary);
+}
+
+nav.main ul li:hover .i-wrapper .i {
+  color: var(--font-1);
+}
+
+/* Label styles adjusted for wider typography */
+.nav-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--font-3);
+  text-align: center;
+  transition: color 0.2s ease;
+  width: 100%;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 4px 0 0 0;
+  padding: 0 2px;
+}
+
+/* Active and hover states for label */
+nav.main ul li.active .nav-label {
+  color: var(--primary);
+}
+
+nav.main ul li:hover .nav-label {
+  color: var(--font-1);
+}
+
+/* Profile image styles */
+nav.main ul .img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 2px;
+}
+
+nav.main ul .img-wrapper img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Active indicator */
+nav.main ul li.active .nav-item::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 40%;
+  width: 3px;
+  transform: translateY(-50%);
+  background-color: var(--primary);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Click effect */
+nav.main ul li:active .nav-item {
+  transform: scale(0.95);
+}
+
+/* Media query adjustments */
+@media (max-width: 768px) {
+  nav.main {
+    width: 80px;
+  }
+
+  .nav-item {
+    width: 60px;
+    min-height: 56px;
+  }
+
+  .nav-label {
+    font-size: 0.65rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (max-width: 480px) {
+  nav.main {
+    width: 70px;
+  }
+
+  .nav-item {
+    width: 55px;
+    min-height: 52px;
+    padding: 6px 4px 5px 4px;
+  }
+}
+
+/* Special handling for certain distinctive fonts */
+body[style*="Major Mono"] .nav-label,
+body[style*="Space Mono"] .nav-label,
+body[style*="Basement Grotesque"] .nav-label,
+body[style*="Clash Display"] .nav-label {
+  font-size: 0.65rem;
+  letter-spacing: -0.03em;
+  transform: scale(0.95);
+  transform-origin: center center;
+}

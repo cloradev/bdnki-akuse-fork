@@ -1,0 +1,645 @@
+:root {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-card: #1a1a1a;
+  --bg-card-header: #222222;
+  --bg-sidebar: #161616;
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(255, 255, 255, 0.1);
+
+  --text-primary: var(--font-1);
+  --text-secondary: var(--font-2);
+
+  /* This primary color will be dynamically changed by the settings */
+  --primary: #2563eb;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  color: var(--font-1);
+  background-color: var(--color-0);
+}
+
+/* Settings Container */
+.settings-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--font-1);
+  background-color: transparent;
+}
+
+/* Settings Header */
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.settings-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.settings-version {
+  font-size: 14px;
+  color: var(--font-2);
+  text-align: right;
+}
+
+.settings-version .os-info {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.settings-main {
+  display: flex;
+  gap: 24px;
+  background-color: transparent;
+}
+
+/* Settings Sidebar */
+.settings-sidebar {
+  width: 220px;
+  padding: 20px 0;
+  background-color: var(--color-0);
+  border-right: 1px solid var(--border-color);
+}
+
+.settings-nav-button {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--font-2);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-nav-button:hover {
+  background-color: var(--bg-hover);
+  color: var(--font-1);
+}
+
+.settings-nav-button.active {
+  background-color: var(--bg-active);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.settings-nav-icon {
+  margin-right: 12px;
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Settings Content */
+.settings-content {
+  flex: 1;
+  overflow: auto;
+  background-color: transparent;
+}
+
+/* Settings Section */
+.settings-section {
+  background-color: var(--color-0);
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.settings-section-header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--color-1);
+}
+
+.settings-section-icon {
+  font-size: 18px;
+  margin-right: 12px;
+  color: var(--primary);
+}
+
+.settings-section-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--font-1);
+}
+
+.settings-section-content {
+  padding: 0;
+}
+
+/* Individual Setting Item */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.setting-item-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.setting-item-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--font-1);
+}
+
+.setting-item-description {
+  font-size: 13px;
+  color: var(--font-2);
+  line-height: 1.4;
+}
+
+.setting-item-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 100px;
+}
+
+/* For display texts like Enabled/Disabled */
+.setting-status-text {
+  font-size: 13px;
+  color: var(--font-2);
+  min-width: 55px;
+}
+
+/* Toggle Switch */
+.toggle-switch-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button {
+  position: relative;
+  width: 46px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: var(--color-2);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button.enabled {
+  background-color: var(--primary);
+}
+
+.toggle-indicator {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--font-1);
+  transition: transform 0.2s, background-color 0.2s;
+  left: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-button.enabled .toggle-indicator {
+  transform: translateX(18px);
+}
+
+.toggle-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Select Control */
+.select-control {
+  width: 100%;
+}
+
+.settings-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background-color: var(--color-1);
+  border: 1px solid var(--color-2);
+  color: var(--font-1);
+  font-size: 14px;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-select:focus {
+  outline: none;
+  border-color: #444;
+}
+
+/* Radio Control */
+.radio-control {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-button {
+  padding: 8px 16px;
+  background-color: var(--color-1);
+  border: 1px solid var(--color-2);
+  border-radius: 4px;
+  color: var(--font-2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.radio-button:hover {
+  background-color: var(--bg-hover);
+}
+
+.radio-button.active {
+  background-color: var(--color-3);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.select-control select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--font-1);
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 150px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 32px;
+}
+
+/* Action Button */
+.settings-action-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-action-button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .settings-main {
+    flex-direction: column;
+  }
+
+  .settings-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 0 10px 0;
+  }
+
+  .settings-nav-button {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .setting-item {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .setting-item-control {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .radio-control, .select-control, .toggle-switch-container {
+    width: 100%;
+  }
+}
+
+.setting-control-with-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: #1d4ed8;
+}
+
+.action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.danger-button {
+  background-color: #dc2626;
+}
+
+.danger-button:hover {
+  background-color: #b91c1c;
+}
+
+/* Background Theme Preview */
+.background-theme-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.theme-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.background-theme-preview {
+  width: 75px;
+  height: 55px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+}
+
+.background-theme-preview:hover {
+  transform: scale(1.05);
+}
+
+.background-theme-preview.active {
+  border-color: var(--primary);
+}
+
+.background-theme-preview .color-stripe {
+  height: 11px;
+}
+
+/* Pitch Black Theme */
+.bg-theme-pitchblack .color-stripe:nth-child(1) { background-color: #000000; }
+.bg-theme-pitchblack .color-stripe:nth-child(2) { background-color: #070707; }
+.bg-theme-pitchblack .color-stripe:nth-child(3) { background-color: #0d0d0d; }
+.bg-theme-pitchblack .color-stripe:nth-child(4) { background-color: #141414; }
+.bg-theme-pitchblack .color-stripe:nth-child(5) { background-color: #1a1a1a; }
+
+/* Night Theme */
+.bg-theme-night .color-stripe:nth-child(1) { background-color: #000000; }
+.bg-theme-night .color-stripe:nth-child(2) { background-color: #0a0a0a; }
+.bg-theme-night .color-stripe:nth-child(3) { background-color: #121212; }
+.bg-theme-night .color-stripe:nth-child(4) { background-color: #1a1a1a; }
+.bg-theme-night .color-stripe:nth-child(5) { background-color: #222222; }
+
+/* Darker Theme */
+.bg-theme-darker .color-stripe:nth-child(1) { background-color: #080a0e; }
+.bg-theme-darker .color-stripe:nth-child(2) { background-color: #12151b; }
+.bg-theme-darker .color-stripe:nth-child(3) { background-color: #181c23; }
+.bg-theme-darker .color-stripe:nth-child(4) { background-color: #1e2229; }
+.bg-theme-darker .color-stripe:nth-child(5) { background-color: #242630; }
+
+/* Dark Theme */
+.bg-theme-dark .color-stripe:nth-child(1) { background-color: #0f1115; }
+.bg-theme-dark .color-stripe:nth-child(2) { background-color: #1a1d24; }
+.bg-theme-dark .color-stripe:nth-child(3) { background-color: #22252e; }
+.bg-theme-dark .color-stripe:nth-child(4) { background-color: #2c2e3a; }
+.bg-theme-dark .color-stripe:nth-child(5) { background-color: #32333f; }
+
+/* Midnight Blue Theme */
+.bg-theme-midnightblue .color-stripe:nth-child(1) { background-color: #0c1425; }
+.bg-theme-midnightblue .color-stripe:nth-child(2) { background-color: #162042; }
+.bg-theme-midnightblue .color-stripe:nth-child(3) { background-color: #1e2c54; }
+.bg-theme-midnightblue .color-stripe:nth-child(4) { background-color: #283966; }
+.bg-theme-midnightblue .color-stripe:nth-child(5) { background-color: #324878; }
+
+/* Dim Theme */
+.bg-theme-dim .color-stripe:nth-child(1) { background-color: #1f2937; }
+.bg-theme-dim .color-stripe:nth-child(2) { background-color: #2d3748; }
+.bg-theme-dim .color-stripe:nth-child(3) { background-color: #374151; }
+.bg-theme-dim .color-stripe:nth-child(4) { background-color: #4b5563; }
+.bg-theme-dim .color-stripe:nth-child(5) { background-color: #6b7280; }
+
+/* Slate Theme */
+.bg-theme-slate .color-stripe:nth-child(1) { background-color: #334155; }
+.bg-theme-slate .color-stripe:nth-child(2) { background-color: #475569; }
+.bg-theme-slate .color-stripe:nth-child(3) { background-color: #64748b; }
+.bg-theme-slate .color-stripe:nth-child(4) { background-color: #94a3b8; }
+.bg-theme-slate .color-stripe:nth-child(5) { background-color: #cbd5e1; }
+
+/* Light Theme */
+.bg-theme-light .color-stripe:nth-child(1) { background-color: #e5e7eb; }
+.bg-theme-light .color-stripe:nth-child(2) { background-color: #f3f4f6; }
+.bg-theme-light .color-stripe:nth-child(3) { background-color: #f9fafb; }
+.bg-theme-light .color-stripe:nth-child(4) { background-color: #ffffff; }
+.bg-theme-light .color-stripe:nth-child(5) { background-color: #ffffff; }
+
+.theme-label {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+  color: var(--font-2);
+}
+
+/* Accent Color Preview */
+.accent-color-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.accent-color-option {
+  width: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.accent-color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+}
+
+.accent-color-circle:hover {
+  transform: scale(1.1);
+}
+
+.accent-color-circle.active {
+  border-color: var(--font-1);
+  box-shadow: 0 0 0 2px var(--color-0);
+}
+
+.accent-color-label {
+  font-size: 12px;
+  text-align: center;
+  color: var(--font-2);
+}
+
+.accent-minato {
+  background-color: #2563eb;
+}
+
+.accent-rias {
+  background-color: #dc2626;
+}
+
+.accent-kurumi {
+  background-color: #9333ea;
+}
+
+.accent-miku {
+  background-color: #10b981;
+}
+
+.accent-sakura {
+  background-color: #ec4899;
+}
+
+.accent-naruto {
+  background-color: #f59e0b;
+}
+
+.accent-todoroki {
+  background-color: #0891b2;
+}
+
+.accent-nezuko {
+  background-color: #be123c;
+}
+
+/* Font Family Previews */
+.font-family-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.font-family-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.7;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  width: 160px;
+  margin-bottom: 10px;
+}
+
+.font-family-option:hover {
+  opacity: 1;
+  background-color: var(--bg-hover);
+  transform: translateY(-2px);
+}
+
+.font-family-option.active {
+  opacity: 1;
+  border-color: var(--primary);
+  background-color: var(--bg-active);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.font-family-sample {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+  color: var(--font-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  height: 70px;
+  width: 100%;
+  border-radius: 6px;
+  text-align: center;
+  background-color: var(--color-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.font-family-label {
+  font-size: 12px;
+  text-align: center;
+  color: var(--font-2);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.settings-font-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.reset-font-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--color-1);
+  color: var(--font-1);
+  border: 1px solid var(--color-2);
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-font-button:hover {
+  background-color: var(--color-2);
+  border-color: var(--primary);
+}

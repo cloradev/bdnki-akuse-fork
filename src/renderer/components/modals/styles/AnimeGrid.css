@@ -1,0 +1,274 @@
+.anime-custom-grid-container {
+  width: 100%;
+  padding: 0;
+}
+
+.anime-custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  width: 100%;
+  padding: 0;
+}
+
+.anime-custom-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(var(--color-2-rgb), 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  overflow: hidden;
+  height: 100%;
+}
+
+.anime-custom-card:hover {
+  background-color: var(--color-3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.anime-custom-image {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.anime-custom-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.anime-custom-card:hover .anime-custom-image img {
+  transform: scale(1.05);
+}
+
+.anime-custom-score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--color-important);
+  color: var(--font-1);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.score-star {
+  font-size: 0.8rem;
+}
+
+.anime-custom-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.anime-custom-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--font-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anime-custom-details {
+  display: flex;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--font-3);
+  flex-wrap: wrap;
+}
+
+.anime-custom-format {
+  padding: 2px 8px;
+  background-color: var(--color-3);
+  border-radius: 4px;
+  color: var(--font-2);
+  transition: all 0.2s ease;
+}
+
+.anime-custom-year {
+  padding: 2px 8px;
+  background-color: var(--color-3);
+  border-radius: 4px;
+  color: var(--font-2);
+  transition: all 0.2s ease;
+}
+
+.anime-custom-episodes {
+  padding: 2px 8px;
+  background-color: var(--color-3);
+  border-radius: 4px;
+  color: var(--font-2);
+  transition: all 0.2s ease;
+}
+
+.anime-custom-format:hover,
+.anime-custom-year:hover,
+.anime-custom-episodes:hover {
+  background-color: var(--color-3);
+  color: var(--font-1);
+  transform: translateY(-2px);
+}
+
+/* Relation badge styles */
+.relation-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--color-important);
+  color: var(--font-1);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  z-index: 2;
+  text-transform: capitalize;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Different colors for different relation types */
+.relation-badge.sequel {
+  background-color: var(--color-important);
+}
+
+.relation-badge.prequel {
+  background-color: var(--color-important);
+}
+
+.relation-badge.alternative {
+  background-color: var(--color-important);
+}
+
+.relation-badge.spin-off {
+  background-color: var(--color-important);
+}
+
+.relation-badge.side-story {
+  background-color: var(--color-important);
+}
+
+.relation-badge.parent {
+  background-color: var(--color-important);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .anime-custom-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .anime-custom-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .anime-custom-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .anime-custom-image {
+    height: 200px;
+  }
+
+  .anime-custom-title {
+    font-size: 0.85rem;
+  }
+
+  .anime-custom-details {
+    font-size: 0.75rem;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Customize the modal grid containers */
+.related-tab .anime-custom-grid-container,
+.recommended-tab .anime-custom-grid-container {
+  padding: 0;
+  position: relative;
+}
+
+/* Pagination Controls for Modal - specific positioning and styles */
+.modal-pagination-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 0 8px 0 !important;
+  padding: 0;
+  gap: 10px;
+  position: relative; /* Ensure it doesn't inherit position from Tab1 */
+  z-index: 5;
+}
+
+/* Ensure modal pagination doesn't inherit any Tab1 pagination styles */
+.modal-pagination-controls button,
+.modal-pagination-controls span {
+  position: static;
+}
+
+.modal-pagination-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-3);
+  color: var(--font-1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.modal-pagination-button:hover:not(.disabled) {
+  background-color: var(--color-important);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-pagination-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: rgba(var(--color-2-rgb), 0.5);
+  color: var(--font-3);
+}
+
+.modal-pagination-info {
+  font-size: 0.85rem;
+  color: var(--font-2);
+  font-weight: 500;
+}
+
+/* Add responsive styles for modal pagination */
+@media (max-width: 768px) {
+  .modal-pagination-controls {
+    margin-top: 15px;
+    padding: 8px;
+  }
+
+  .modal-pagination-button {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .modal-pagination-info {
+    font-size: 0.8rem;
+  }
+}

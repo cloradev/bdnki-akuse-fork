@@ -1,0 +1,37 @@
+/* Skeleton loader styles */
+.grid-section.loading .grid-anime-list {
+  min-height: 600px; /* Ensure the grid has a minimum height when loading */
+}
+
+/* Customize skeleton appearance */
+.react-loading-skeleton {
+  background-color: var(--color-2) !important;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-2),
+    var(--color-3),
+    var(--color-2)
+  ) !important;
+}
+
+/* Customize skeleton animation */
+@keyframes react-loading-skeleton {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Ensure skeleton anime entries have proper spacing */
+.anime-entry.skeleton {
+  margin-bottom: 15px;
+}
+
+/* Style for anime title skeleton */
+.anime-entry.skeleton .anime-title .react-loading-skeleton {
+  margin-bottom: 5px;
+}
+
+/* Style for anime info skeleton */
+.anime-entry.skeleton .anime-info .react-loading-skeleton {
+  height: 16px;
+}

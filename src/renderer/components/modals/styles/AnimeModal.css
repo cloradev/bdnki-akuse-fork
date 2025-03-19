@@ -1,0 +1,1118 @@
+/* Full-screen Tab-like Modal */
+.anime-page {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 90px); /* Full width minus navbar width */
+  height: 100vh; /* Full viewport height */
+  top: 0; /* Start from the top */
+  left: 90px; /* Position next to navbar */
+  margin: 0; /* No margins */
+  color: var(--font-1);
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--color-1);
+  z-index: 10; /* Below navbar but above other content */
+  padding-bottom: 20px; /* Add padding at bottom for better scrolling */
+}
+
+/* Back button styling */
+.anime-page button.exit {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--color-2);
+  color: var(--font-1);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 20;
+  transition: var(--transition);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.anime-page button.exit:hover {
+  background-color: var(--color-3);
+  transform: scale(1.08) translateX(2px);
+}
+
+.anime-page button.exit .i {
+  transform: translateX(1px);
+}
+
+/* Back button tooltip */
+.anime-page button.exit::after {
+  content: 'Back';
+  position: absolute;
+  right: 50px;
+  background-color: var(--color-3);
+  color: var(--font-2);
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.anime-page button.exit:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Improve scrolling experience */
+.anime-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.anime-page::-webkit-scrollbar-track {
+  background: var(--color-1);
+}
+
+.anime-page::-webkit-scrollbar-thumb {
+  background-color: var(--color-3);
+  border-radius: 4px;
+}
+
+/* Ensure anime tabs fill available space */
+.tab-like .tab-content > div {
+  min-height: 70vh;
+}
+
+/* Make sure grids look good regardless of content amount */
+.related-tab,
+.recommended-tab {
+  min-height: 500px;
+}
+
+.anime-page .watch-buttons {
+  position: absolute;
+  bottom: 40px;
+  left: 25px;
+  display: flex;
+  gap: 10px;
+  z-index: 4;
+}
+
+.anime-page .content-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px; /* Wider for full-screen experience */
+  height: max-content;
+  margin: 0 auto; /* Center horizontally with no top/bottom margin */
+  padding: 20px; /* Add padding instead of margin for consistent spacing */
+  background: var(--color-1);
+  border-radius: 0; /* Remove border radius for tab-like appearance */
+  box-shadow: none; /* Remove shadow for tab-like appearance */
+  overflow: hidden;
+}
+
+.anime-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sidebar Styles */
+.anime-sidebar {
+  width: 240px;
+  padding: 0 20px 20px 20px;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-right: 1px solid var(--color-3);
+}
+
+.anime-poster {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 0 15px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.anime-poster:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.anime-poster img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.watch-now-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 0;
+  background-color: var(--color-important);
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+}
+
+.watch-now-button:hover {
+  background-color: var(--color-important);
+  transform: translateY(-2px);
+}
+
+.watch-now-button:active {
+  transform: translateY(0);
+}
+
+.play-icon {
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+.watching-status {
+  margin-bottom: 20px;
+}
+
+.watching {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--font-2);
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+}
+
+.anime-metadata {
+  border-top: 1px solid var(--color-3);
+  padding-top: 15px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 5px;
+  margin-right: -5px;
+  scrollbar-width: thin;
+}
+
+.anime-metadata::-webkit-scrollbar {
+  width: 4px;
+}
+
+.anime-metadata::-webkit-scrollbar-thumb {
+  background-color: var(--color-3);
+  border-radius: 4px;
+}
+
+.metadata-section {
+  margin-bottom: 15px;
+}
+
+.metadata-section h4 {
+  font-size: 0.8rem;
+  color: var(--font-3);
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metadata-section p {
+  font-size: 0.9rem;
+  color: var(--font-2);
+  margin: 0;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.metadata-section a {
+  color: var(--color-important);
+  text-decoration: none;
+}
+
+.metadata-section a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content Styles */
+.anime-main {
+  flex: 1;
+  padding: 20px 25px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 200px);
+}
+
+.anime-header {
+  margin-bottom: 30px;
+}
+
+.anime-header .title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+  color: var(--font-1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.anime-categories {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.category {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--color-2);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.category.tv,
+.category.year,
+.category.season {
+  background-color: var(--color-3);
+  color: var(--font-2);
+  backdrop-filter: blur(4px);
+}
+
+.category.format {
+  background-color: rgba(58, 63, 68, 0.8);
+  color: var(--font-2);
+  backdrop-filter: blur(4px);
+}
+
+.category.score {
+  background-color: var(--color-important);
+  color: var(--font-1);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
+
+.category.adult {
+  background-color: rgba(229, 57, 53, 0.9);
+  color: white;
+  font-weight: 600;
+}
+
+.anime-synopsis {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--font-2);
+  margin: 0 0 25px 0;
+  max-height: 5.1em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  position: relative;
+  padding-right: 20px;
+}
+
+.anime-synopsis::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  height: 1.7em;
+  background: linear-gradient(to right, transparent, var(--color-1));
+  pointer-events: none;
+}
+
+/* Tab Navigation */
+.tab-navigation {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--color-3);
+  margin-bottom: 20px;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-1);
+  z-index: 5;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  color: var(--font-3);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.tab-button:hover {
+  color: var(--font-1);
+}
+
+.tab-button.active {
+  color: var(--font-1);
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-important);
+  animation: tabIndicator 0.3s ease;
+}
+
+@keyframes tabIndicator {
+  from { width: 0; left: 50%; }
+  to { width: 100%; left: 0; }
+}
+
+.tab-content {
+  padding: 0 10px;
+  flex: 1;
+}
+
+/* Overview Tab */
+.overview-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.overview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.overview-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--font-1);
+  position: relative;
+  padding-left: 15px;
+  font-weight: 700;
+}
+
+.overview-details h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background-color: var(--color-important);
+  border-radius: 2px;
+}
+
+.full-synopsis {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--font-2);
+  white-space: pre-line;
+}
+
+.genres-section {
+  margin-top: 10px;
+}
+
+.genres-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.genre-tag {
+  padding: 6px 15px;
+  background-color: var(--color-2);
+  color: var(--font-2);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.genre-tag:hover {
+  background-color: var(--color-3);
+  color: var(--font-1);
+  transform: translateY(-2px);
+}
+
+.trailer-container {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Clean up related and recommended tab styles to only include the tab containers */
+.related-tab,
+.recommended-tab {
+  padding: 15px 0;
+  width: 100%;
+  overflow: visible !important;
+}
+
+/* Grid layout styles for related and recommended sections */
+.grid-converted,
+.anime-grid-layout {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 15px !important;
+  width: 100% !important;
+  float: none !important;
+  padding: 0 15px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+/* Reset flex and horizontal scroll in grid containers */
+.grid-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+  float: none !important;
+}
+
+/* Ensure items in the grid have consistent styling */
+.grid-converted .anime-entry,
+.grid-converted .anime-card,
+.anime-grid-layout .anime-entry,
+.anime-grid-layout .anime-card {
+  width: 100% !important;
+  min-width: unset !important;
+  max-width: 100% !important;
+  margin: 0 0 15px 0 !important;
+  height: auto !important;
+}
+
+/* Style card covers */
+.grid-converted .anime-cover,
+.anime-grid-layout .anime-cover {
+  height: 270px !important;
+  width: 100% !important;
+}
+
+/* Style card titles */
+.grid-converted .anime-title,
+.anime-grid-layout .anime-title {
+  padding: 10px !important;
+  font-size: 0.95rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Hide horizontal scroll buttons in grid view */
+.grid-converted + .scrollers {
+  display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .grid-converted,
+  .anime-grid-layout {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-converted,
+  .anime-grid-layout {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+  }
+
+  .grid-converted .anime-cover,
+  .anime-grid-layout .anime-cover {
+    height: 200px !important;
+  }
+
+  .grid-converted .anime-title,
+  .anime-grid-layout .anime-title {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Tab button styles */
+.tab-button {
+  position: relative;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.tab-button:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateX(-50%);
+  animation: tabHover 0.25s ease forwards;
+  z-index: -1;
+}
+
+@keyframes tabHover {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Characters & Artwork Tabs */
+.characters-tab,
+.artwork-tab {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.placeholder-text {
+  color: var(--font-3);
+  text-align: center;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Episodes Tab */
+.episodes-tab {
+  padding-top: 10px;
+}
+
+.anime-page .episodes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Convert to grid layout */
+.anime-page .episodes-section .episodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.anime-page .episodes-section .episodes-options {
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+  z-index: 10;
+  align-items: center;
+}
+
+.anime-page .episodes-section .episodes-options h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  position: relative;
+  padding-left: 15px;
+  font-weight: 700;
+}
+
+.anime-page .episodes-section .episodes-options h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background-color: var(--color-important);
+  border-radius: 2px;
+}
+
+.anime-page .episodes-section .episodes-options .right {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.anime-page .episodes-section .episode-entry {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(var(--color-2), 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  overflow: hidden;
+  height: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.anime-page .episodes-section .episode-entry:hover {
+  background-color: var(--color-3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.anime-page .episodes-section .episode-entry .image {
+  position: relative;
+  width: 100%;
+  height: 125px;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.anime-page .episodes-section .episode-entry .image::before {
+  content: '\f04b';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-important);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.anime-page .episodes-section .episode-entry:hover .image::before {
+  opacity: 1;
+}
+
+.anime-page .episodes-section .episode-entry img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.anime-page .episodes-section .episode-entry:hover img {
+  transform: scale(1.05);
+}
+
+.anime-page .episodes-section .episode-entry .progress-bar-full {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 3;
+}
+
+.anime-page .episodes-section .episode-entry .progress-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: var(--color-important);
+  z-index: 4;
+}
+
+.anime-page .episodes-section .episode-entry .episode-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.anime-page .episodes-section .episode-entry .episode-content .title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--font-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anime-page .episodes-section .episode-entry .episode-content .title span {
+  color: var(--font-3);
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.anime-page .episodes-section .episode-entry .episode-content .info {
+  font-size: 0.85rem;
+  color: var(--font-3);
+  margin-bottom: 8px;
+}
+
+.anime-page .episodes-section .episode-content .description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--font-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* Adjust language indicators for grid layout */
+.language-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 3px;
+  z-index: 5;
+}
+
+.language-tag {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.language-tag.sub {
+  background-color: var(--color-important);
+}
+
+.language-tag.dub {
+  background-color: var(--color-important);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .anime-page .episodes-section .episodes {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .anime-page {
+    width: calc(100% - 70px); /* Adjust for even narrower navbar on mobile */
+    left: 70px;
+  }
+
+  .anime-page .content-wrapper {
+    padding: 10px;
+  }
+
+  /* Hide tooltip on smaller screens */
+  .anime-page button.exit::after {
+    display: none;
+  }
+
+  /* Position the back button better on mobile */
+  .anime-page button.exit {
+    top: 15px;
+    right: 15px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .anime-sidebar {
+    display: block;
+  }
+
+  .anime-poster {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 20px auto;
+  }
+
+  .watch-now-button {
+    width: 100%;
+  }
+
+  .anime-page .episodes-section .episode-entry {
+    flex-direction: column;
+  }
+
+  .anime-page .episodes-section .episode-entry .image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .anime-metadata {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .anime-header .title {
+    font-size: 2rem;
+  }
+
+  .genres-list {
+    gap: 8px;
+  }
+
+  .genre-tag {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+.next-episode-info {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  color: var(--font-2);
+  font-size: 0.9rem;
+  background-color: var(--color-2);
+  padding: 6px 15px;
+  border-radius: 4px;
+  border-left: 3px solid var(--color-important);
+}
+
+.next-episode-info span {
+  font-weight: 600;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  color: var(--font-3);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  color: var(--font-2);
+}
+
+.empty-state .empty-sub-text {
+  font-size: 0.9rem;
+  color: var(--font-3);
+}
+
+.next-episode-info.standalone {
+  position: relative;
+  right: auto;
+  width: fit-content;
+  margin-bottom: 15px;
+  z-index: 1;
+}
+
+.media-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.tags-section {
+  margin-top: 10px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 15px;
+  background-color: var(--color-2);
+  color: var(--font-2);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tag-item:hover {
+  background-color: var(--color-3);
+  color: var(--font-1);
+  transform: translateY(-2px);
+}
+
+.tag-rank {
+  margin-left: 5px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  background-color: var(--color-important);
+  padding: 1px 6px;
+  border-radius: 10px;
+  color: white;
+}
+
+.additional-info-section {
+  margin-top: 10px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: var(--font-3);
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: var(--font-2);
+  font-weight: 600;
+}
+
+.sidebar-genres,
+.sidebar-tags-list,
+.sidebar-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.sidebar-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  background-color: var(--color-2);
+  color: var(--font-2);
+  margin-bottom: 3px;
+}
+
+.sidebar-tag.tag {
+  position: relative;
+}
+
+.sidebar-tag.more {
+  background-color: var(--color-2);
+  font-style: italic;
+}
+
+.sidebar-tag.sub {
+  background-color: var(--color-important);
+  color: white;
+}
+
+.sidebar-tag.dub {
+  background-color: var(--color-important);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar-tag {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+}
+
+/* Tab-like layout improvements */
+.tab-like .anime-page {
+  background-color: var(--color-1);
+  padding: 0;
+  top: 0;
+}
+
+.tab-like .anime-page .content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 0;
+}
+
+/* Ensure proper sidebar height in tab mode */
+.tab-like .anime-sidebar {
+  min-height: calc(100vh - 100px);
+}
+
+/* Ensure grid displays well in tab mode */
+.tab-like .anime-custom-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* Improve tab content area for tab mode */
+.tab-content {
+  padding: 0 10px;
+  flex: 1;
+}
+
+/* Specific adjustments for tab-like mode on smaller screens */
+@media (max-width: 1024px) {
+  .tab-like .anime-page .content-wrapper {
+    padding: 10px;
+  }
+
+  .tab-like .anime-layout {
+    flex-direction: column;
+  }
+
+  .tab-like .anime-sidebar {
+    width: 100%;
+    padding: 0 10px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .tab-like .anime-poster {
+    width: 180px;
+    height: 250px;
+  }
+
+  .tab-like .sidebar-info {
+    flex: 1;
+    min-width: 300px;
+  }
+}

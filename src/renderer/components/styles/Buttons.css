@@ -1,0 +1,137 @@
+/* MAIN BUTTON */
+
+button.bm,
+button.bm .primary {
+  border: none;
+  outline: none;
+  width: max-content;
+  height: 50px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--font-1);
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  transition: var(--transition);
+  will-change: transform;
+}
+
+/* CIRCLE BUTTON */
+
+button.bc,
+button.bc.primary {
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 12px;
+  font-size: 1.3rem;
+  color: var(--font-1);
+  background-color: var(--primary);
+  border-radius: 6px;
+  transition: var(--transition);
+  will-change: transform
+}
+
+button.bc.small {
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+}
+
+button.bm.empty,
+button.bc.empty {
+  color: var(--font-1);
+  background-color: var(--color-1);
+  border: 1px solid var(--color-2);
+}
+
+button.bm.empty:hover:not(.disabled),
+button.bc.empty:hover:not(.disabled) {
+  background-color: var(--color-2);
+  border: 1px solid var(--color-3);
+}
+
+button.bm.empty:active:not(.disabled),
+button.bc.empty:active:not(.disabled) {
+  background-color: var(--color-3);
+  border: 1px solid var(--color-3);
+}
+
+/* COMMON */
+
+button.bm.shadow,
+button.bc.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+button.bm.light,
+button.bc.light {
+  color: var(--color-1);
+  background-color: var(--font-1);
+}
+
+button.bm.dark,
+button.bc.dark {
+  color: var(--font-1);
+  background-color: var(--color-1);
+}
+
+button.bm.warning,
+button.bc.warning {
+  color: var(--font-1);
+  background-color: var(--color-warning);
+}
+
+button.bm:hover:not(.disabled),
+button.bc:hover:not(.disabled) {
+  transform: scale(1.05);
+  /* filter: brightness(1.2); */
+}
+
+button.bm:active:not(.disabled),
+button.bc:active:not(.disabled) {
+  transform: scale(1);
+  filter: brightness(1);
+}
+
+button.bm.disabled,
+button.bc.disabled {
+  opacity: 0.5;
+}
+
+/* button circle hover buttons */
+
+.circle-button-container {
+  position: relative;
+}
+
+.circle-button-container .hover-buttons {
+  position: absolute;
+  /* can't figure out how to center automatically :( */
+  top: -9px;
+  left: -90%;
+  display: flex;
+  gap: 18px;
+  visibility: hidden;
+  opacity: 0;
+  padding: 10px;
+  background-color: var(--color-0);
+  border: 1px solid var(--color-2);
+  border-radius: 100px;
+  z-index: 10;
+  transform: scale(0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.circle-button-container:hover .hover-buttons button,
+.circle-button-container:hover .hover-buttons {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.2s;
+}

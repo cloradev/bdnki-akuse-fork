@@ -1,0 +1,112 @@
+.custom-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 43px;
+  background-color: rgba(25, 27, 35, 0.6) !important;
+  border-radius: 8px;
+  color: var(--font-2);
+  z-index: 20;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-select:hover {
+  background-color: rgba(34, 37, 46, 0.8) !important;
+}
+
+.custom-select.open-radius {
+  border-radius: 8px 8px 0 0;
+}
+
+.custom-select .label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 14px;
+  font-size: 15px;
+}
+
+.custom-select .label .chevron {
+  position: absolute;
+  top: 28%;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-select .label .chevron.down {
+  transform: rotate(180deg);
+  color: #ff9800;
+}
+
+.custom-select .options-group {
+  min-width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(25, 27, 35, 0.95) !important;
+  backdrop-filter: blur(16px);
+  border-radius: 0 0 8px 8px;
+  z-index: 999;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+}
+
+.custom-select .options-group::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-select .options-group::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.custom-select .options-group::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.custom-select .options-group::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 152, 0, 0.3);
+}
+
+.custom-select .option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.custom-select .option.active {
+  color: #fff;
+  background-color: #ff9800;
+  font-weight: 500;
+}
+
+.custom-select .option.active:hover {
+  filter: brightness(1.1);
+}
+
+.custom-select .option:hover:not(.active) {
+  color: var(--font-1);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1000px) {
+  .custom-select-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

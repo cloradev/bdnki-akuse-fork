@@ -1,0 +1,264 @@
+.slideshow-container {
+  top: 0;
+  right: 1.5% !important;
+  position: relative;
+  margin: 0 auto 20px;
+  width: 98%;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slideshow-wrapper {
+  display: flex;
+  transition: transform 1s ease;
+  height: 100%;
+}
+
+.slideshow-container .shadow-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+  transition: var(--transition);
+}
+
+.slideshow-container .score {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+
+.slideshow-container .content {
+  opacity: 0;
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  height: max-content;
+  z-index: 2;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.slideshow-container .anime-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--font-1);
+}
+
+.slideshow-container .anime-info {
+  color: var(--font-1);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.slideshow-container .anime-info .bullet {
+  color: var(--font-2);
+}
+
+.slideshow-container .anime-info .anime-format {
+  color: var(--color-important);
+}
+
+.slideshow-container .anime-info,
+.slideshow-container .anime-info *,
+.slideshow-container .anime-genres {
+}
+
+.slideshow-container .anime-description {
+  font-size: 1rem;
+  color: var(--font-2);
+  display: -webkit-box;
+  line-height: 1.5;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 550px;
+}
+
+.slideshow-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 8s ease;
+}
+
+/* .slide:hover img {
+  transform: scale(1.05);
+} */
+
+.slideshow-wrapper .buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.slide {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.dot-container {
+  text-align: center;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.dot {
+  cursor: pointer;
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 100%;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.dot.active {
+  background-color: var(--font-1);
+  width: 10px;
+  height: 10px;
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: var(--color-0);
+  opacity: 0.7;
+  color: var(--font-1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.prev-button {
+  left: 15px;
+}
+
+.next-button {
+  right: 15px;
+}
+
+.slideshow-container:hover .prev-button,
+.slideshow-container:hover .next-button {
+  opacity: 0.7;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  opacity: 1 !important;
+  background: var(--color-0);
+}
+
+/* Animation classes */
+.show-slideshow-content {
+  animation: fadeInUp 1s forwards;
+}
+
+.hide-slideshow-content {
+  animation: fadeOutDown 0.5s forwards;
+}
+
+.show-slide-opacity {
+  animation: fadeIn 1s forwards;
+}
+
+.hide-opacity-long {
+  animation: fadeOut 0.5s forwards;
+}
+
+.dwindle-slideshow-banner {
+  animation: dwindleBanner 12s ease forwards;
+}
+
+.enlarge-slideshow-banner {
+  animation: none;
+  transform: scale(1.04);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dwindleBanner {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}

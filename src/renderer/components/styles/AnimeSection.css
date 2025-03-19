@@ -1,0 +1,56 @@
+section .anime-list-wrapper {
+  padding: 50px;
+  margin: -50px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  /* disable if drag n scroll is enabled */
+  scroll-behavior: smooth;
+  /* disable if drag n scroll is enabled */
+}
+
+section .anime-list {
+  float: left;
+  width: max-content;
+  gap: 25px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+  z-index: 2;
+}
+
+section .grid-anime-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 10px;
+  z-index: 2;
+}
+
+/* Ensure skeleton items maintain grid layout */
+section .grid-anime-list .anime-entry.skeleton {
+  width: 100%;
+  margin-right: 0;
+  height: 320px; /* Account for title space */
+}
+
+section div.recommended-select {
+  width: 160px
+}
+
+section div.week-select {
+  width: 160px
+}
+
+
+/* section#related-section, */
+section#recommended-section {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /* height: 25%; */
+  width: calc(100% - 30px);
+  padding-left: 25px;
+}
