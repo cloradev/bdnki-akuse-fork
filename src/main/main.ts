@@ -21,6 +21,13 @@ autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = true;
 autoUpdater.autoRunAppAfterInstall = true;
 
+// Configure update settings from package.json
+autoUpdater.setFeedURL({
+  provider: 'github',
+  owner: 'cloradev',
+  repo: 'bdnki-akuse-fork'
+});
+
 let mainWindow: BrowserWindow | null = null;
 
 if (process.env.NODE_ENV === 'production') {
@@ -96,7 +103,7 @@ const createWindow = async () => {
 
       if (STORE.get('logged') !== true) STORE.set('logged', false);
 
-      autoUpdater.checkForUpdates();
+      checkForUpdates();
     }
   });
 
@@ -288,6 +295,7 @@ autoUpdater.on('download-progress', (info) => {
 
 autoUpdater.on('error', (info) => {
   if (!mainWindow) return;
+  mainWindow.webContents.send('console-log', 'Auto updater error:');
   mainWindow.webContents.send('console-log', info);
 });
 
@@ -300,6 +308,26 @@ ipcMain.on('download-update', async () => {
 ipcMain.on('update-section', (event, ...args) => {
   if(!mainWindow) return;
   mainWindow.webContents.send('update-section', ...args);
+});
+
+// Add function to check for updates
+function checkForUpdates() {
+  try {
+    autoUpdater.checkForUpdates().catch(err => {
+      console.error('Error checking for updates:', err);
+      if (mainWindow) {
+        mainWindow.webContents.send('console-log', 'Error checking for updates:');
+        mainWindow.webContents.send('console-log', err);
+      }
+    });
+  } catch (error) {
+    console.error('Exception checking for updates:', error);
+  }
+}
+
+// Add an IPC handler to manually check for updates
+ipcMain.on('check-for-updates', () => {
+  checkForUpdates();
 });
 
 /* DISCORD RPC */
